@@ -63,22 +63,22 @@ export default function Services() {
                         >
                             {/* Background Image */}
                             <div
-                                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60"
+                                className={`absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 ${isDark ? "opacity-40 group-hover:opacity-60" : "opacity-100"}`}
                                 style={{ backgroundImage: `url(${service.image})` }}
                             />
 
                             {/* Content */}
-                            <div className="absolute inset-0 p-8 flex flex-col justify-between z-10">
+                            <div className="absolute inset-0 p-8 flex flex-col justify-between z-10 text-white">
                                 <div className="flex justify-between items-start">
-                                    <span className={`text-sm font-mono border px-2 py-1 rounded-full ${isDark ? "text-neutral-400 border-white/20" : "text-neutral-600 border-black/20"}`}>
+                                    <span className="text-sm font-mono border px-2 py-1 rounded-full text-white/80 border-white/40">
                                         {service.id}
                                     </span>
-                                    <ArrowUpRight className={`w-6 h-6 opacity-0 -translate-y-2 translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 ${isDark ? "text-white" : "text-black"}`} />
+                                    <ArrowUpRight className="w-6 h-6 opacity-0 -translate-y-2 translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 text-white" />
                                 </div>
 
                                 <div>
-                                    <h3 className="text-3xl font-bold mb-2">{t(service.titleKey)}</h3>
-                                    <p className={`text-sm max-w-[80%] opacity-0 translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 ${isDark ? "text-neutral-300" : "text-neutral-700"}`}>
+                                    <h3 className="text-3xl font-bold mb-2 drop-shadow-[0_8px_24px_rgba(0,0,0,0.9)]">{t(service.titleKey)}</h3>
+                                    <p className="text-sm max-w-[80%] opacity-0 translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 text-white/80">
                                         {t(service.descKey)}
                                     </p>
                                 </div>
@@ -96,7 +96,7 @@ export default function Services() {
                         >
                             {/* Background Image - Lower opacity for de-emphasis */}
                             <div
-                                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105 opacity-20 group-hover:opacity-30"
+                                className={`absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105 ${isDark ? "opacity-20 group-hover:opacity-30" : "opacity-100"}`}
                                 style={{ backgroundImage: `url(${service.image})` }}
                             />
 
@@ -104,9 +104,9 @@ export default function Services() {
                             {isDark && <div className="absolute inset-0 bg-black/30" />}
 
                             {/* Content */}
-                            <div className="absolute inset-0 p-6 flex flex-col justify-between z-10">
+                            <div className="absolute inset-0 p-6 flex flex-col justify-between z-10 text-white">
                                 <div className="flex justify-between items-start">
-                                    <span className={`text-xs font-mono border px-2 py-1 rounded-full ${isDark ? "text-neutral-500 border-white/10" : "text-neutral-500 border-black/10"}`}>
+                                    <span className="text-xs font-mono border px-2 py-1 rounded-full text-white/70 border-white/30">
                                         {service.id}
                                     </span>
                                     {service.comingSoon && (
@@ -118,11 +118,11 @@ export default function Services() {
                                 </div>
 
                                 <div>
-                                    <h3 className={`text-2xl font-bold mb-2 ${isDark ? "text-neutral-300" : "text-neutral-700"}`}>{t(service.titleKey)}</h3>
-                                    <p className={`text-sm max-w-[90%] ${isDark ? "text-neutral-500" : "text-neutral-600"}`}>
+                                    <h3 className="text-2xl font-bold mb-2 text-white drop-shadow-[0_6px_18px_rgba(0,0,0,0.9)]">{t(service.titleKey)}</h3>
+                                    <p className="text-sm max-w-[90%] text-white/70">
                                         {t(service.descKey)}
                                     </p>
-                                    <p className={`text-xs mt-3 italic ${isDark ? "text-neutral-600" : "text-neutral-500"}`}>
+                                    <p className="text-xs mt-3 italic text-white/50">
                                         {t("services.availableOnRequest")}
                                     </p>
                                 </div>

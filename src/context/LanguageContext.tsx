@@ -79,6 +79,7 @@ const translations = {
         "contact.submit": "Send via WhatsApp",
 
         // Footer
+        "footer.improvement": "Always under continuous improvement",
         "footer.rights": "All rights reserved.",
         "footer.tagline": "Premium Upholstery & Leather Design",
     },
@@ -100,7 +101,7 @@ const translations = {
         // Story
         "story.label": "ታሪካችን",
         "story.headline1": "ወንበሮችን ብቻ አንሸፍንም።",
-        "story.headline2": "ልምዶችን እንፈጥራለን።",
+        "story.headline2": "ውበትንም እንፈጥራለን።",
         "story.description": "ለዓመታት ለደንበኞች በሰራነው ስራ የታመንን አጋራቸው ሆነናል። የእኛ የእጅ ባለሙያዎች የእጅ ጥበብን ከዘመናዊ ቴክኒኮች ጋር በማዋሃድ አስገራሚ የውስጥ ክፍሎችን ይፈጥራሉ።",
         "story.stat1.value": "10+",
         "story.stat1.label": "የልህቀት ዓመታት",
@@ -150,6 +151,7 @@ const translations = {
         "contact.submit": "በዋትስአፕ ይላኩ",
 
         // Footer
+        "footer.improvement": "በማያቋርጥ መሻሻል ውስጥ",
         "footer.rights": "መብቱ በህግ የተጠበቀ ነው።",
         "footer.tagline": "ፕሪሚየም የቆዳ ዲዛይን እና ሽፋን",
     },

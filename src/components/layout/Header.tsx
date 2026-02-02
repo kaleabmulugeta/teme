@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
 import LanguageToggle from "@/components/ui/LanguageToggle";
@@ -16,6 +16,8 @@ export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const { t, language } = useLanguage();
     const { isDark } = useTheme();
+    const mobileMenuRef = useRef<HTMLDivElement | null>(null);
+    const mobileMenuButtonRef = useRef<HTMLButtonElement | null>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -25,6 +27,26 @@ export default function Header() {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    useEffect(() => {
+        if (!mobileMenuOpen) {
+            return;
+        }
+
+        const handlePointerDown = (event: PointerEvent) => {
+            const target = event.target as Node;
+            if (mobileMenuRef.current?.contains(target)) {
+                return;
+            }
+            if (mobileMenuButtonRef.current?.contains(target)) {
+                return;
+            }
+            setMobileMenuOpen(false);
+        };
+
+        document.addEventListener("pointerdown", handlePointerDown);
+        return () => document.removeEventListener("pointerdown", handlePointerDown);
+    }, [mobileMenuOpen]);
 
     const navItems = [
         { key: "nav.story", href: "/#story" },
@@ -36,16 +58,16 @@ export default function Header() {
     return (
         <header
             className={cn(
-                "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out px-6 py-4 md:px-12",
-                scrolled 
+                "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out px-6 md:px-12",
+                scrolled
                     ? isDark ? "bg-black py-3" : "bg-white py-3"
-                    : "bg-transparent"
+                    : "bg-transparent py-4"
             )}
         >
             <div className="flex items-center justify-between max-w-7xl mx-auto">
                 <Link href="/" className={`text-2xl font-bold tracking-tighter ${isDark ? "text-white" : "text-black"}`}>
                     <span className="block leading-none">TEME</span>
-                    <span className={`block leading-none ${isDark ? "text-neutral-400" : "text-neutral-500"}`}>
+                    <span className={`block leading-none ${isDark ? "text-neutral-300" : "text-neutral-500"}`}>
                         UPHOLSTERY
                     </span>
                 </Link>
@@ -77,6 +99,7 @@ export default function Header() {
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     className={`md:hidden p-2 ${isDark ? "text-white" : "text-black"}`}
                     aria-label="Toggle menu"
+                    ref={mobileMenuButtonRef}
                 >
                     {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                 </button>
@@ -90,6 +113,7 @@ export default function Header() {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         className={`md:hidden border-t mt-4 ${isDark ? "bg-black/95 border-white/10" : "bg-white border-black/10"}`}
+                        ref={mobileMenuRef}
                     >
                         <nav className="flex flex-col py-6 px-4 space-y-4" lang={language}>
                             {navItems.map((item) => (

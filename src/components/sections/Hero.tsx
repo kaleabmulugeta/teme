@@ -67,7 +67,7 @@ export default function Hero() {
     return (
         <section
             ref={containerRef}
-            className={`relative h-screen w-full overflow-hidden flex items-center justify-center ${isDark ? "bg-black" : "bg-white"}`}
+            className={`relative min-h-screen w-full overflow-hidden flex items-center justify-center pt-12 md:pt-14 ${isDark ? "bg-black" : "bg-white"}`}
         >
             {/* Background */}
             <div
@@ -79,7 +79,7 @@ export default function Hero() {
 
             {/* Overlay for better text readability */}
             {isDark && (
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent" />
             )}
 
             {/* Content */}
@@ -88,11 +88,11 @@ export default function Hero() {
                 className="relative z-10 text-center px-4 max-w-5xl mx-auto flex flex-col items-center gap-8"
                 lang={language}
             >
-                <h1 className={`hero-text text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter ${isDark ? "text-white" : "text-black"}`}>
+                <h1 className={`hero-text text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter ${isDark ? "text-white drop-shadow-[0_6px_20px_rgba(0,0,0,0.85)]" : "text-black"}`}>
                     {t("hero.title1")} <br />
-                    <span className={isDark ? "text-neutral-400" : "text-neutral-600"}>{t("hero.title2")}</span>
+                    <span className={isDark ? "text-white" : "text-neutral-600"}>{t("hero.title2")}</span>
                 </h1>
-                <p className={`hero-text text-lg md:text-xl max-w-2xl font-light tracking-wide ${isDark ? "text-neutral-300" : "text-neutral-700"} ${language === "am" ? "leading-relaxed" : ""}`}>
+                <p className={`hero-text text-lg md:text-xl max-w-2xl font-light tracking-wide ${isDark ? "text-neutral-200 drop-shadow-[0_4px_14px_rgba(0,0,0,0.7)]" : "text-neutral-700"} ${language === "am" ? "leading-relaxed" : ""}`}>
                     {t("hero.subtitle")}
                 </p>
                 <div className="hero-btn flex flex-col sm:flex-row gap-4 mt-4">

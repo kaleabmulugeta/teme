@@ -15,9 +15,15 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                     {/* Brand */}
                     <div className="space-y-4">
-                        <Link href="/" className="text-3xl font-bold tracking-tighter">
-                            TEME<span className="text-neutral-500">.UPH</span>
+                        <Link href="/" className={`text-3xl font-bold tracking-tighter ${isDark ? "text-white" : "text-black"}`}>
+                            <span className="block leading-none">TEME</span>
+                            <span className={`block leading-none ${isDark ? "text-neutral-300" : "text-neutral-500"}`}>
+                                UPHOLSTERY
+                            </span>
                         </Link>
+                        <p className={`text-xs uppercase tracking-wider ${isDark ? "text-neutral-500" : "text-neutral-700"}`} lang={language}>
+                            {t("footer.improvement")}
+                        </p>
                         <p className={`text-sm max-w-xs ${isDark ? "text-neutral-400" : "text-neutral-600"}`} lang={language}>
                             {t("footer.tagline")}
                         </p>

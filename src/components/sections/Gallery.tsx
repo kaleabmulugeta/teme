@@ -120,6 +120,14 @@ const designs = [
         categoryAm: "መኪና",
         image: "/photos/kuru.jpg",
     },
+    {
+        id: 16,
+        name: "Semay",
+        nameAm: "ሰማይ",
+        category: "automotive",
+        categoryAm: "መኪና",
+        image: "/photos/semay.jpg",
+    },
 ];
 
 export default function Gallery() {
