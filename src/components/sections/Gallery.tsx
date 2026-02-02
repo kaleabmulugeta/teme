@@ -2,6 +2,7 @@
 
 import Section from "@/components/ui/Section";
 import { useLanguage } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 import { motion } from "framer-motion";
 import { Eye } from "lucide-react";
 
@@ -9,97 +10,130 @@ import { Eye } from "lucide-react";
 const designs = [
     {
         id: 1,
+        name: "Konjit",
+        nameAm: "ቆንጂት",
+        category: "automotive",
+        categoryAm: "መኪና",
+        image: "/photos/konjit.jpg",
+    },
+    {
+        id: 2,
+        name: "Anbesaw",
+        nameAm: "አንበሳው",
+        category: "automotive",
+        categoryAm: "መኪና",
+        image: "/photos/anbesaw.jpg",
+    },
+    {
+        id: 3,
+        name: "Alula",
+        nameAm: "አሉላ",
+        category: "automotive",
+        categoryAm: "መኪና",
+        image: "/photos/alula.jpg",
+    },
+    {
+        id: 4,
+        name: "Maru",
+        nameAm: "ማሩ",
+        category: "automotive",
+        categoryAm: "መኪና",
+        image: "/photos/maru.jpg",
+    },
+    {
+        id: 5,
+        name: "Genanaw",
+        nameAm: "ገናናው",
+        category: "automotive",
+        categoryAm: "መኪና",
+        image: "/photos/genanaw.jpg",
+    },
+    {
+        id: 6,
+        name: "Dinku",
+        nameAm: "ዲንቁ",
+        category: "automotive",
+        categoryAm: "መኪና",
+        image: "/photos/dinku.jpg",
+    },
+    {
+        id: 7,
+        name: "Wendwesen",
+        nameAm: "ወንድወሰን",
+        category: "automotive",
+        categoryAm: "መኪና",
+        image: "/photos/wendwesen.jpg",
+    },
+    {
+        id: 8,
+        name: "Moges",
+        nameAm: "ሞገስ",
+        category: "automotive",
+        categoryAm: "መኪና",
+        image: "/photos/moges.jpg",
+    },
+    {
+        id: 9,
+        name: "Birhan",
+        nameAm: "ብርሃን",
+        category: "automotive",
+        categoryAm: "መኪና",
+        image: "/photos/birhan.jpg",
+    },
+    {
+        id: 10,
+        name: "Tikur Sew",
+        nameAm: "ጥቁር ሰው",
+        category: "automotive",
+        categoryAm: "መኪና",
+        image: "/photos/berihun.jpg",
+    },
+    {
+        id: 12,
+        name: "Degsew",
+        nameAm: "ደግሰው",
+        category: "automotive",
+        categoryAm: "መኪና",
+        image: "/photos/degsew.jpg",
+    },
+    {
+        id: 13,
         name: "Menelik",
         nameAm: "ምኒልክ",
         category: "automotive",
         categoryAm: "መኪና",
-        image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2670&auto=format&fit=crop",
+        image: "/photos/menelik.jpg",
     },
     {
-        id: 2,
-        name: "Tewodros",
-        nameAm: "ቴዎድሮስ",
+        id: 14,
+        name: "Nitsuh",
+        nameAm: "ንጹህ",
         category: "automotive",
         categoryAm: "መኪና",
-        image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2670&auto=format&fit=crop",
+        image: "/photos/clean.jpg",
     },
     {
-        id: 3,
-        name: "Haile",
-        nameAm: "ኃይሌ",
-        category: "cinema",
-        categoryAm: "ሲኒማ",
-        image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=2670&auto=format&fit=crop",
-    },
-    {
-        id: 4,
-        name: "Wondwossen",
-        nameAm: "ወንድወሰን",
+        id: 15,
+        name: "Kuru",
+        nameAm: "ኩሩ",
         category: "automotive",
         categoryAm: "መኪና",
-        image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=2670&auto=format&fit=crop",
-    },
-    {
-        id: 5,
-        name: "Taytu",
-        nameAm: "ጣይቱ",
-        category: "lounge",
-        categoryAm: "ላውንጅ",
-        image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=2670&auto=format&fit=crop",
-    },
-    {
-        id: 6,
-        name: "Zewditu",
-        nameAm: "ዘውዲቱ",
-        category: "cinema",
-        categoryAm: "ሲኒማ",
-        image: "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=2670&auto=format&fit=crop",
-    },
-    {
-        id: 7,
-        name: "Lalibela",
-        nameAm: "ላሊበላ",
-        category: "automotive",
-        categoryAm: "መኪና",
-        image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?q=80&w=2574&auto=format&fit=crop",
-    },
-    {
-        id: 8,
-        name: "Axum",
-        nameAm: "አክሱም",
-        category: "chair",
-        categoryAm: "ወንበር",
-        image: "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?q=80&w=2574&auto=format&fit=crop",
-    },
-    {
-        id: 9,
-        name: "Gondar",
-        nameAm: "ጎንደር",
-        category: "automotive",
-        categoryAm: "መኪና",
-        image: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=2670&auto=format&fit=crop",
-    },
-    {
-        id: 10,
-        name: "Fasilides",
-        nameAm: "ፋሲልደስ",
-        category: "hall",
-        categoryAm: "አዳራሽ",
-        image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2670&auto=format&fit=crop",
+        image: "/photos/kuru.jpg",
     },
 ];
 
 export default function Gallery() {
     const { t, language } = useLanguage();
+    const { isDark } = useTheme();
 
     return (
-        <Section id="gallery" className="bg-neutral-950 text-white min-h-screen theme-transition">
+        <Section id="gallery" className={`min-h-screen ${isDark ? "bg-neutral-950 text-white" : "bg-white text-black"}`}>
             <div className="max-w-7xl mx-auto" lang={language}>
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-4">
-                        {t("gallery.title1")} <span className="text-neutral-500">{t("gallery.title2")}</span>
+                    <h2 className={`text-4xl md:text-6xl font-bold tracking-tighter mb-4 ${isDark ? "text-white/90" : "text-black/90"}`}>
+                        {t("gallery.title1")} <span className={isDark ? "text-neutral-500" : "text-neutral-400"}>{t("gallery.title2")}</span>
                     </h2>
-                    <p className="text-neutral-400">{t("gallery.subtitle")}</p>
+                    <p className={`${isDark ? "text-neutral-400" : "text-neutral-600"} opacity-80`}>{t("gallery.subtitle")}</p>
                 </div>
 
                 {/* Design Grid */}
@@ -111,7 +145,7 @@ export default function Gallery() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: idx * 0.05 }}
-                            className="group relative aspect-[4/5] bg-neutral-900 rounded-xl overflow-hidden border border-white/5 cursor-pointer hover:border-white/20 transition-all duration-300"
+                            className={`group relative aspect-[4/5] rounded-xl overflow-hidden border cursor-pointer transition-all duration-300 ${isDark ? "bg-neutral-900/70 border-white/5 hover:border-white/20" : "bg-neutral-100/70 border-black/5 hover:border-black/20"}`}
                         >
                             {/* Background Image */}
                             <div
@@ -120,13 +154,15 @@ export default function Gallery() {
                             />
 
                             {/* Gradient Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+                            {isDark && (
+                                <div className="absolute inset-0 opacity-60 group-hover:opacity-80 transition-opacity duration-300 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                            )}
 
                             {/* Content */}
                             <div className="absolute inset-0 p-4 flex flex-col justify-between z-10">
                                 {/* Category Badge */}
                                 <div className="flex justify-end">
-                                    <span className="text-[10px] font-medium uppercase tracking-wider text-neutral-400 bg-black/40 backdrop-blur-sm px-2 py-1 rounded-full border border-white/10">
+                                    <span className={`text-[10px] font-medium uppercase tracking-wider px-2 py-1 rounded-full border ${isDark ? "text-neutral-400 bg-black/40 border-white/10" : "text-neutral-600 bg-white border-black/10"}`}>
                                         {language === "am" ? design.categoryAm : design.category}
                                     </span>
                                 </div>
@@ -137,8 +173,8 @@ export default function Gallery() {
                                         {language === "am" ? design.nameAm : design.name}
                                     </h3>
                                     <div className="flex items-center gap-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                                        <Eye className="w-4 h-4 text-neutral-400" />
-                                        <span className="text-xs text-neutral-400">{t("gallery.viewProject")}</span>
+                                        <Eye className={`w-4 h-4 ${isDark ? "text-neutral-400" : "text-neutral-600"}`} />
+                                        <span className={`text-xs ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>{t("gallery.viewProject")}</span>
                                     </div>
                                 </div>
                             </div>
@@ -153,7 +189,7 @@ export default function Gallery() {
 
                 {/* Stats or Call to Action */}
                 <div className="mt-16 text-center">
-                    <p className="text-neutral-500 text-sm">
+                    <p className={`text-sm ${isDark ? "text-neutral-500" : "text-neutral-600"}`}>
                         {language === "en"
                             ? "Showcasing a selection of our finest work. Contact us to discuss your project."
                             : "የምርጥ ስራዎቻችን ምርጫ። ስለ ፕሮጀክትዎ ለመወያየት ያግኙን።"}

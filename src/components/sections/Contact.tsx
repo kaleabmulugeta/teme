@@ -4,6 +4,7 @@ import { useState, FormEvent } from "react";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 import { useLanguage } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 import { MessageCircle } from "lucide-react";
 
 // Administrator WhatsApp number - replace with actual number
@@ -11,6 +12,7 @@ const WHATSAPP_NUMBER = "251975136484";
 
 export default function Contact() {
     const { t, language } = useLanguage();
+    const { isDark } = useTheme();
     const [formData, setFormData] = useState({
         name: "",
         phone: "",
@@ -52,19 +54,19 @@ ${formData.message}
     };
 
     return (
-        <Section id="contact" className="bg-black text-white theme-transition">
+        <Section id="contact" className={isDark ? "bg-black text-white" : "bg-white text-black"}>
             <div className="max-w-3xl mx-auto text-center" lang={language}>
                 <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-8">
-                    {t("contact.title1")} <span className="text-neutral-500">{t("contact.title2")}</span>
+                    {t("contact.title1")} <span className={isDark ? "text-neutral-500" : "text-neutral-400"}>{t("contact.title2")}</span>
                 </h2>
-                <p className="text-neutral-400 mb-12">
+                <p className={`mb-12 ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>
                     {t("contact.subtitle")}
                 </p>
 
                 <form onSubmit={handleSubmit} className="space-y-6 text-left">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
-                            <label htmlFor="name" className="text-sm font-medium text-neutral-500 uppercase tracking-wider">
+                            <label htmlFor="name" className={`text-sm font-medium uppercase tracking-wider ${isDark ? "text-neutral-500" : "text-neutral-600"}`}>
                                 {t("contact.name")}
                             </label>
                             <input
@@ -73,12 +75,12 @@ ${formData.message}
                                 required
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                className="w-full bg-neutral-900 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors theme-transition"
+                                className={`w-full border rounded-lg px-4 py-3 focus:outline-none transition-colors ${isDark ? "bg-neutral-900 border-white/10 text-white focus:border-white/30" : "bg-neutral-100 border-black/10 text-black focus:border-black/30"}`}
                                 placeholder={t("contact.name.placeholder")}
                             />
                         </div>
                         <div className="space-y-2">
-                            <label htmlFor="phone" className="text-sm font-medium text-neutral-500 uppercase tracking-wider">
+                            <label htmlFor="phone" className={`text-sm font-medium uppercase tracking-wider ${isDark ? "text-neutral-500" : "text-neutral-600"}`}>
                                 {t("contact.phone")}
                             </label>
                             <input
@@ -87,14 +89,14 @@ ${formData.message}
                                 required
                                 value={formData.phone}
                                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                className="w-full bg-neutral-900 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors theme-transition"
+                                className={`w-full border rounded-lg px-4 py-3 focus:outline-none transition-colors ${isDark ? "bg-neutral-900 border-white/10 text-white focus:border-white/30" : "bg-neutral-100 border-black/10 text-black focus:border-black/30"}`}
                                 placeholder={t("contact.phone.placeholder")}
                             />
                         </div>
                     </div>
 
                     <div className="space-y-2">
-                        <label htmlFor="email" className="text-sm font-medium text-neutral-500 uppercase tracking-wider">
+                        <label htmlFor="email" className={`text-sm font-medium uppercase tracking-wider ${isDark ? "text-neutral-500" : "text-neutral-600"}`}>
                             {t("contact.email")}
                         </label>
                         <input
@@ -102,20 +104,20 @@ ${formData.message}
                             id="email"
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            className="w-full bg-neutral-900 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors theme-transition"
+                            className={`w-full border rounded-lg px-4 py-3 focus:outline-none transition-colors ${isDark ? "bg-neutral-900 border-white/10 text-white focus:border-white/30" : "bg-neutral-100 border-black/10 text-black focus:border-black/30"}`}
                             placeholder={t("contact.email.placeholder")}
                         />
                     </div>
 
                     <div className="space-y-2">
-                        <label htmlFor="interest" className="text-sm font-medium text-neutral-500 uppercase tracking-wider">
+                        <label htmlFor="interest" className={`text-sm font-medium uppercase tracking-wider ${isDark ? "text-neutral-500" : "text-neutral-600"}`}>
                             {t("contact.interest")}
                         </label>
                         <select
                             id="interest"
                             value={formData.interest}
                             onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
-                            className="w-full bg-neutral-900 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors theme-transition"
+                            className={`w-full border rounded-lg px-4 py-3 focus:outline-none transition-colors ${isDark ? "bg-neutral-900 border-white/10 text-white focus:border-white/30" : "bg-neutral-100 border-black/10 text-black focus:border-black/30"}`}
                         >
                             <option value="automotive">{t("contact.interest.automotive")}</option>
                             <option value="architectural">{t("contact.interest.architectural")}</option>
@@ -125,7 +127,7 @@ ${formData.message}
                     </div>
 
                     <div className="space-y-2">
-                        <label htmlFor="message" className="text-sm font-medium text-neutral-500 uppercase tracking-wider">
+                        <label htmlFor="message" className={`text-sm font-medium uppercase tracking-wider ${isDark ? "text-neutral-500" : "text-neutral-600"}`}>
                             {t("contact.message")}
                         </label>
                         <textarea
@@ -134,7 +136,7 @@ ${formData.message}
                             required
                             value={formData.message}
                             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                            className="w-full bg-neutral-900 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors resize-none theme-transition"
+                            className={`w-full border rounded-lg px-4 py-3 focus:outline-none transition-colors resize-none ${isDark ? "bg-neutral-900 border-white/10 text-white focus:border-white/30 placeholder:text-neutral-500" : "bg-neutral-100 border-black/10 text-black focus:border-black/30 placeholder:text-neutral-500"}`}
                             placeholder={t("contact.message.placeholder")}
                         />
                     </div>
@@ -144,10 +146,10 @@ ${formData.message}
                             <MessageCircle className="w-4 h-4" />
                             {t("contact.submit")}
                         </Button>
-                        <p className="text-xs text-neutral-600 mt-4">
+                        <p className={`text-xs mt-4 ${isDark ? "text-neutral-600" : "text-neutral-500"}`}>
                             {language === "en"
                                 ? "Your message will be sent directly via WhatsApp"
-                                : "መልዕክትዎ በቀጥታ በዋትስአፕ ይላካል"}
+                                : "መልዕክትዎ በቀጥታ ቴሌግራም ይላካል"}
                         </p>
                     </div>
                 </form>

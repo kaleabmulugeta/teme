@@ -7,6 +7,7 @@ import Button from "@/components/ui/Button";
 import LanguageToggle from "@/components/ui/LanguageToggle";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import { useLanguage } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -14,6 +15,7 @@ export default function Header() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const { t, language } = useLanguage();
+    const { isDark } = useTheme();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -34,13 +36,18 @@ export default function Header() {
     return (
         <header
             className={cn(
-                "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out px-6 py-4 md:px-12 theme-transition",
-                scrolled ? "bg-black/50 backdrop-blur-md py-3 light:bg-white/50" : "bg-transparent"
+                "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out px-6 py-4 md:px-12",
+                scrolled 
+                    ? isDark ? "bg-black py-3" : "bg-white py-3"
+                    : "bg-transparent"
             )}
         >
             <div className="flex items-center justify-between max-w-7xl mx-auto">
-                <Link href="/" className="text-2xl font-bold tracking-tighter text-white light:text-black">
-                    TEME<span className="text-neutral-400 light:text-neutral-500">.UPH</span>
+                <Link href="/" className={`text-2xl font-bold tracking-tighter ${isDark ? "text-white" : "text-black"}`}>
+                    <span className="block leading-none">TEME</span>
+                    <span className={`block leading-none ${isDark ? "text-neutral-400" : "text-neutral-500"}`}>
+                        UPHOLSTERY
+                    </span>
                 </Link>
 
                 {/* Desktop Navigation */}
@@ -49,7 +56,7 @@ export default function Header() {
                         <Link
                             key={item.key}
                             href={item.href}
-                            className="text-sm font-medium text-neutral-300 hover:text-white transition-colors light:text-neutral-600 light:hover:text-black"
+                            className={`text-sm font-medium transition-colors ${isDark ? "text-neutral-300 hover:text-white" : "text-neutral-600 hover:text-black"}`}
                         >
                             {t(item.key)}
                         </Link>
@@ -68,7 +75,7 @@ export default function Header() {
                 {/* Mobile Menu Button */}
                 <button
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    className="md:hidden p-2 text-white"
+                    className={`md:hidden p-2 ${isDark ? "text-white" : "text-black"}`}
                     aria-label="Toggle menu"
                 >
                     {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -82,7 +89,7 @@ export default function Header() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-black/95 backdrop-blur-lg border-t border-white/10 mt-4"
+                        className={`md:hidden border-t mt-4 ${isDark ? "bg-black/95 border-white/10" : "bg-white border-black/10"}`}
                     >
                         <nav className="flex flex-col py-6 px-4 space-y-4" lang={language}>
                             {navItems.map((item) => (
@@ -90,12 +97,12 @@ export default function Header() {
                                     key={item.key}
                                     href={item.href}
                                     onClick={() => setMobileMenuOpen(false)}
-                                    className="text-lg font-medium text-neutral-300 hover:text-white transition-colors py-2"
+                                    className={`text-lg font-medium transition-colors py-2 ${isDark ? "text-neutral-300 hover:text-white" : "text-neutral-600 hover:text-black"}`}
                                 >
                                     {t(item.key)}
                                 </Link>
                             ))}
-                            <div className="flex items-center gap-4 pt-4 border-t border-white/10">
+                            <div className={`flex items-center gap-4 pt-4 border-t ${isDark ? "border-white/10" : "border-black/10"}`}>
                                 <LanguageToggle />
                                 <ThemeToggle />
                             </div>

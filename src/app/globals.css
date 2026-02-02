@@ -5,15 +5,15 @@
   --background: #050505;
   --foreground: #ffffff;
 
-  --color-charcoal: #1A1A1A;
-  --color-cognac: #8B4513;
-  --color-silver: #E5E5E5;
-  --color-midnight: #0A192F;
+  --color-charcoal: #1a1a1a;
+  --color-cognac: #8b4513;
+  --color-silver: #e5e5e5;
+  --color-midnight: #0a192f;
 
   /* Functional */
-  --color-success: #10B981;
-  --color-error: #EF4444;
-  --color-warning: #F59E0B;
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
 
   /* Shades for dark mode */
   --neutral-50: #fafafa;
@@ -31,13 +31,13 @@
 
 /* Light Mode */
 .light {
-  --background: #FAFAFA;
-  --foreground: #1A1A1A;
+  --background: #f8f8f8;
+  --foreground: #1a1a1a;
 
-  --color-charcoal: #F5F5F5;
-  --color-cognac: #A0522D;
-  --color-silver: #2D2D2D;
-  --color-midnight: #E8EEF4;
+  --color-charcoal: #1a1a1a;
+  --color-cognac: #a0522d;
+  --color-silver: #e5e5e5;
+  --color-midnight: #f0f0f0;
 
   /* Invert neutrals for light mode */
   --neutral-50: #0a0a0a;
@@ -49,8 +49,8 @@
   --neutral-600: #a3a3a3;
   --neutral-700: #d4d4d4;
   --neutral-800: #e5e5e5;
-  --neutral-900: #f5f5f5;
-  --neutral-950: #fafafa;
+  --neutral-900: #f0f0f0;
+  --neutral-950: #f5f5f5;
 }
 
 @theme inline {
@@ -73,7 +73,6 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1,
@@ -97,7 +96,8 @@ h6 {
 }
 
 [lang="am"] {
-  font-family: var(--font-ethiopic), var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family:
+    var(--font-ethiopic), var(--font-sans), Arial, Helvetica, sans-serif;
   letter-spacing: 0;
 }
 
@@ -128,80 +128,15 @@ h6 {
   background: var(--color-cognac);
 }
 
-/* Theme transition utilities */
-.theme-transition {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+/* Scrollbar for light mode */
+.light ::-webkit-scrollbar-track {
+  background: var(--background);
 }
 
-/* Light mode specific overrides */
-.light .bg-black {
-  background-color: var(--background);
+.light ::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
 }
 
-.light .bg-neutral-900 {
-  background-color: #f5f5f5;
-}
-
-.light .bg-neutral-950 {
-  background-color: #fafafa;
-}
-
-.light .text-white {
-  color: var(--foreground);
-}
-
-.light .text-neutral-300 {
-  color: #525252;
-}
-
-.light .text-neutral-400 {
-  color: #737373;
-}
-
-.light .text-neutral-500 {
-  color: #a3a3a3;
-}
-
-.light .border-white\/10 {
-  border-color: rgba(0, 0, 0, 0.1);
-}
-
-.light .border-white\/20 {
-  border-color: rgba(0, 0, 0, 0.2);
-}
-
-.light .bg-white\/5 {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-.light .bg-white\/10 {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.light .hover\:bg-white:hover {
-  background-color: #1a1a1a;
-}
-
-.light .hover\:text-black:hover {
-  color: #ffffff;
-}
-
-/* Form elements in light mode */
-.light input,
-.light select,
-.light textarea {
-  background-color: #ffffff;
-  border-color: rgba(0, 0, 0, 0.15);
-  color: #1a1a1a;
-}
-
-.light input::placeholder,
-.light textarea::placeholder {
-  color: #a3a3a3;
-}
-
-.light input:focus,
-.light select:focus,
-.light textarea:focus {
-  border-color: rgba(0, 0, 0, 0.4);
+.light ::-webkit-scrollbar-thumb:hover {
+  background: var(--color-cognac);
 }

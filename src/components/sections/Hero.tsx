@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Button from "@/components/ui/Button";
 import { useLanguage } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,6 +14,7 @@ export default function Hero() {
     const textRef = useRef<HTMLDivElement>(null);
     const bgRef = useRef<HTMLDivElement>(null);
     const { t, language } = useLanguage();
+    const { isDark } = useTheme();
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -65,18 +67,20 @@ export default function Hero() {
     return (
         <section
             ref={containerRef}
-            className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-black theme-transition"
+            className={`relative h-screen w-full overflow-hidden flex items-center justify-center ${isDark ? "bg-black" : "bg-white"}`}
         >
             {/* Background */}
             <div
                 ref={bgRef}
-                className="absolute inset-0 w-full h-full bg-gradient-to-b from-neutral-800 to-black opacity-50"
+                className={`absolute inset-0 w-full h-full ${isDark ? "bg-gradient-to-b from-neutral-800 to-black" : "bg-gradient-to-b from-neutral-200 to-white"}`}
             >
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=2574&auto=format&fit=crop')] bg-cover bg-center opacity-60" />
+                <div className="absolute inset-0 bg-[url('/photos/hero.jpg')] bg-cover bg-center opacity-60" />
             </div>
 
             {/* Overlay for better text readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+            {isDark && (
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+            )}
 
             {/* Content */}
             <div
@@ -84,11 +88,11 @@ export default function Hero() {
                 className="relative z-10 text-center px-4 max-w-5xl mx-auto flex flex-col items-center gap-8"
                 lang={language}
             >
-                <h1 className="hero-text text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white mix-blend-difference">
+                <h1 className={`hero-text text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter ${isDark ? "text-white" : "text-black"}`}>
                     {t("hero.title1")} <br />
-                    <span className="text-neutral-400">{t("hero.title2")}</span>
+                    <span className={isDark ? "text-neutral-400" : "text-neutral-600"}>{t("hero.title2")}</span>
                 </h1>
-                <p className={`hero-text text-lg md:text-xl text-neutral-300 max-w-2xl font-light tracking-wide ${language === "am" ? "leading-relaxed" : ""}`}>
+                <p className={`hero-text text-lg md:text-xl max-w-2xl font-light tracking-wide ${isDark ? "text-neutral-300" : "text-neutral-700"} ${language === "am" ? "leading-relaxed" : ""}`}>
                     {t("hero.subtitle")}
                 </p>
                 <div className="hero-btn flex flex-col sm:flex-row gap-4 mt-4">
@@ -102,7 +106,7 @@ export default function Hero() {
             </div>
 
             {/* Scroll Indicator */}
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-white/50">
+            <div className={`absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce ${isDark ? "text-white/50" : "text-black/50"}`}>
                 <svg
                     width="24"
                     height="24"

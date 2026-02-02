@@ -3,12 +3,14 @@
 import Link from "next/link";
 import SocialIcon from "@/components/ui/SocialIcon";
 import { useLanguage } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function Footer() {
     const { t, language } = useLanguage();
+    const { isDark } = useTheme();
 
     return (
-        <footer className="bg-neutral-950 text-white py-16 border-t border-white/10 theme-transition light:bg-neutral-100 light:text-black light:border-black/10">
+        <footer className={`py-16 border-t ${isDark ? "bg-neutral-950 text-white border-white/10" : "bg-neutral-100 text-black border-black/10"}`}>
             <div className="max-w-7xl mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                     {/* Brand */}
@@ -16,7 +18,7 @@ export default function Footer() {
                         <Link href="/" className="text-3xl font-bold tracking-tighter">
                             TEME<span className="text-neutral-500">.UPH</span>
                         </Link>
-                        <p className="text-sm text-neutral-400 max-w-xs" lang={language}>
+                        <p className={`text-sm max-w-xs ${isDark ? "text-neutral-400" : "text-neutral-600"}`} lang={language}>
                             {t("footer.tagline")}
                         </p>
                     </div>
@@ -27,16 +29,16 @@ export default function Footer() {
                             {language === "en" ? "Quick Links" : "ፈጣን ማገናኛዎች"}
                         </h4>
                         <nav className="flex flex-col space-y-2">
-                            <Link href="/#story" className="text-neutral-400 hover:text-white transition-colors text-sm light:hover:text-black">
+                            <Link href="/#story" className={`text-sm transition-colors ${isDark ? "text-neutral-400 hover:text-white" : "text-neutral-600 hover:text-black"}`}>
                                 {t("nav.story")}
                             </Link>
-                            <Link href="/#services" className="text-neutral-400 hover:text-white transition-colors text-sm light:hover:text-black">
+                            <Link href="/#services" className={`text-sm transition-colors ${isDark ? "text-neutral-400 hover:text-white" : "text-neutral-600 hover:text-black"}`}>
                                 {t("nav.services")}
                             </Link>
-                            <Link href="/#gallery" className="text-neutral-400 hover:text-white transition-colors text-sm light:hover:text-black">
+                            <Link href="/#gallery" className={`text-sm transition-colors ${isDark ? "text-neutral-400 hover:text-white" : "text-neutral-600 hover:text-black"}`}>
                                 {t("nav.gallery")}
                             </Link>
-                            <Link href="/#contact" className="text-neutral-400 hover:text-white transition-colors text-sm light:hover:text-black">
+                            <Link href="/#contact" className={`text-sm transition-colors ${isDark ? "text-neutral-400 hover:text-white" : "text-neutral-600 hover:text-black"}`}>
                                 {t("nav.contact")}
                             </Link>
                         </nav>
@@ -60,11 +62,11 @@ export default function Footer() {
                 </div>
 
                 {/* Copyright */}
-                <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 light:border-black/10">
+                <div className={`mt-12 pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-4 ${isDark ? "border-white/10" : "border-black/10"}`}>
                     <p className="text-sm text-neutral-500" lang={language}>
                         © {new Date().getFullYear()} TEME Upholstery. {t("footer.rights")}
                     </p>
-                    <p className="text-xs text-neutral-600">
+                    <p className={`text-xs ${isDark ? "text-neutral-600" : "text-neutral-500"}`}>
                         Crafted with ❤️ in Ethiopia
                     </p>
                 </div>

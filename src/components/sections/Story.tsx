@@ -5,12 +5,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Section from "@/components/ui/Section";
 import { useLanguage } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Story() {
     const textRef = useRef<HTMLDivElement>(null);
     const { t, language } = useLanguage();
+    const { isDark } = useTheme();
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -43,28 +45,28 @@ export default function Story() {
     ];
 
     return (
-        <Section id="story" className="bg-neutral-900 text-white min-h-[80vh] flex items-center theme-transition">
+        <Section id="story" className={`min-h-[80vh] flex items-center ${isDark ? "bg-neutral-900 text-white" : "bg-neutral-100 text-black"}`}>
             <div ref={textRef} className="max-w-4xl mx-auto text-center space-y-12" lang={language}>
-                <h2 className="story-line text-sm font-bold tracking-[0.2em] text-neutral-500 uppercase">
+                <h2 className={`story-line text-sm font-bold tracking-[0.2em] uppercase ${isDark ? "text-neutral-500" : "text-neutral-500"}`}>
                     {t("story.label")}
                 </h2>
 
                 <div className="space-y-6">
                     <p className={`story-line text-3xl md:text-5xl font-light leading-tight ${language === "am" ? "leading-snug" : ""}`}>
                         {t("story.headline1")} <br />
-                        <span className="text-neutral-400">{t("story.headline2")}</span>
+                        <span className={isDark ? "text-neutral-400" : "text-neutral-600"}>{t("story.headline2")}</span>
                     </p>
 
-                    <p className={`story-line text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto leading-relaxed ${language === "am" ? "text-base md:text-lg" : ""}`}>
+                    <p className={`story-line text-lg md:text-xl max-w-2xl mx-auto leading-relaxed ${isDark ? "text-neutral-400" : "text-neutral-600"} ${language === "am" ? "text-base md:text-lg" : ""}`}>
                         {t("story.description")}
                     </p>
                 </div>
 
-                <div className="story-line grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 border-t border-white/10">
+                <div className={`story-line grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 border-t ${isDark ? "border-white/10" : "border-black/10"}`}>
                     {stats.map((stat) => (
                         <div key={stat.key} className="text-center">
-                            <div className="text-4xl font-bold text-white mb-2">{t(stat.valueKey)}</div>
-                            <div className="text-sm text-neutral-500 uppercase tracking-wider">{t(stat.labelKey)}</div>
+                            <div className={`text-4xl font-bold mb-2 ${isDark ? "text-white" : "text-black"}`}>{t(stat.valueKey)}</div>
+                            <div className={`text-sm uppercase tracking-wider ${isDark ? "text-neutral-500" : "text-neutral-600"}`}>{t(stat.labelKey)}</div>
                         </div>
                     ))}
                 </div>

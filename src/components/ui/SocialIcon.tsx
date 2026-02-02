@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Instagram, Linkedin, Send, MessageCircle } from "lucide-react";
+import { useTheme } from "@/context/ThemeContext";
 
 interface SocialIconProps {
     platform: "instagram" | "linkedin" | "telegram" | "whatsapp" | "x";
@@ -31,13 +32,14 @@ const platformColors = {
 
 export default function SocialIcon({ platform, href, className }: SocialIconProps) {
     const Icon = icons[platform];
+    const { isDark } = useTheme();
 
     return (
         <motion.a
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className={`relative p-3 rounded-full border border-white/10 bg-white/5 text-neutral-400 transition-all duration-300 ${platformColors[platform]} hover:border-white/30 hover:bg-white/10 ${className}`}
+            className={`relative p-3 rounded-full border transition-all duration-300 ${platformColors[platform]} ${isDark ? "border-white/10 bg-white/5 text-neutral-400 hover:border-white/30 hover:bg-white/10" : "border-black/10 bg-white text-neutral-600 hover:border-black/30 hover:bg-neutral-100"} ${className}`}
             whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.95 }}
             aria-label={`Follow us on ${platform}`}
