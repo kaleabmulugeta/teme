@@ -55,6 +55,16 @@ export default function Header() {
         { key: "nav.contact", href: "/#contact" },
     ];
 
+    const handleBookClick = () => {
+        const contactSection = document.getElementById("contact");
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+            window.location.href = "/#contact";
+        }
+        setMobileMenuOpen(false);
+    };
+
     return (
         <header
             className={cn(
@@ -89,7 +99,7 @@ export default function Header() {
                 <div className="hidden md:flex items-center gap-3">
                     <LanguageToggle />
                     <ThemeToggle />
-                    <Button variant="primary" className="px-6 py-2 text-xs">
+                    <Button variant="primary" className="px-6 py-2 text-xs" onClick={handleBookClick}>
                         {t("cta.book")}
                     </Button>
                 </div>
@@ -130,7 +140,7 @@ export default function Header() {
                                 <LanguageToggle />
                                 <ThemeToggle />
                             </div>
-                            <Button variant="primary" className="w-full mt-4">
+                            <Button variant="primary" className="w-full mt-4" onClick={handleBookClick}>
                                 {t("cta.book")}
                             </Button>
                         </nav>
