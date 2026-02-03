@@ -92,7 +92,7 @@ export default function Hero() {
                     {t("hero.title1")} <br />
                     <span className={isDark ? "text-white" : "text-neutral-600"}>{t("hero.title2")}</span>
                 </h1>
-                <p className={`hero-text text-lg md:text-xl max-w-2xl font-light tracking-wide ${isDark ? "text-neutral-200 drop-shadow-[0_4px_14px_rgba(0,0,0,0.7)]" : "text-neutral-700"} ${language === "am" ? "leading-relaxed" : ""}`}>
+                <p className={`hero-text text-lg md:text-xl max-w-2xl font-light tracking-wide subpixel-antialiased ${isDark ? "text-neutral-200 drop-shadow-[0_4px_14px_rgba(0,0,0,0.7)]" : "text-neutral-900 drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]"} ${language === "am" ? "leading-relaxed" : ""}`}>
                     {t("hero.subtitle")}
                 </p>
                 <div className="hero-btn flex flex-col sm:flex-row gap-4 mt-4">
