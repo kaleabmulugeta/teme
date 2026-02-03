@@ -425,7 +425,7 @@ export default function Gallery() {
                     <p className={`text-sm ${isDark ? "text-neutral-500" : "text-neutral-600"}`}>
                         {language === "en"
                             ? "Showcasing a selection of our finest work. Contact us to discuss your project."
-                            : "የምርጥ ስራዎቻችን ምርጫ። ስለ ፕሮጀክትዎ ለመወያየት ያግኙን።"}
+                            : "የምርጥ ስራዎቻችን ማሳያ። ስለ ፕሮጀክትዎ ለመወያየት ያግኙን።"}
                     </p>
                 </div>
             </div>
