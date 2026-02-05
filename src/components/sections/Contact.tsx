@@ -149,7 +149,7 @@ ${formData.message}
                         <p className={`text-xs mt-4 ${isDark ? "text-neutral-600" : "text-neutral-500"}`}>
                             {language === "en"
                                 ? "Your message will be sent directly via WhatsApp"
-                                : "መልዕክትዎ በቀጥታ ቴሌግራም ይላካል"}
+                                : "መልዕክትዎ በቀጥታ በዋትስአፕ ይላካል"}
                         </p>
                     </div>
                 </form>

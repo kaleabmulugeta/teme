@@ -56,7 +56,8 @@ export default function Footer() {
                             {language === "en" ? "Connect With Us" : "ያግኙን"}
                         </h4>
                         <div className="flex gap-3">
-                            <SocialIcon platform="whatsapp" href="https://wa.me/251900000000" />
+                            <SocialIcon platform="whatsapp" href="https://wa.me/251911210000" />
+                            <SocialIcon platform="tiktok" href="https://tiktok.com/@temesgenzeyede" />
                             <SocialIcon platform="telegram" href="https://t.me/temeupholstery" />
                             <SocialIcon platform="instagram" href="https://instagram.com/temeupholstery" />
                             <SocialIcon platform="linkedin" href="https://linkedin.com/company/temeupholstery" />
