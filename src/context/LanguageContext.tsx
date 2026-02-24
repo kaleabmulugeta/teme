@@ -24,8 +24,8 @@ const translations = {
     "cta.book": "Book a Service",
 
     // Hero
-    "hero.title1": "CRAFTING",
-    "hero.title2": "PERFECTION",
+    "hero.title1": "TEME",
+    "hero.title2": "UPHOLSTERY",
     "hero.subtitle":
       "Bespoke upholstery for exclusive interiors. From luxury cars to custom furniture, we redefine craftsmanship.",
     "hero.cta1": "Our Services",
@@ -52,16 +52,13 @@ const translations = {
     "services.automotive.title": "Automotive",
     "services.automotive.desc":
       "Bespoke interiors for luxury cars, SUVs, and classic vehicles.",
-    "services.architectural.title": "Commercial",
-    "services.architectural.desc":
+    "services.commercial.title": "Commercial",
+    "services.commercial.desc":
       "Cinemas, halls, aviation, marine & lounge upholstery.",
-    "services.aviation.title": "Renovations & Revival",
-    "services.aviation.desc":
+    "services.restoration.title": "Renovations & Revival",
+    "services.restoration.desc":
       "Transform your space with stylish, functional renovations.",
-    "services.marine.title": "Marine",
-    "services.marine.desc": "Weather-resistant luxury for boats and yachts.",
-    "services.comingSoon": "Coming Soon",
-    "services.availableOnRequest": "Available Upon Request",
+    "services.btn": "ዝርዝሮችን ይመልከቱ",
 
     // Gallery
     "gallery.title1": "OUR",
@@ -103,13 +100,13 @@ const translations = {
     "value.subtitle": "The principles that guide every stitch and design",
     value1: "Excellence",
     "value1.desc":
-      "We treat every project as if it were our own. From the smallest stitch to the final finish, we care deeply about doing the job right— especially when it comes to vehicle interiors.",
+      "We treat every project like our own, paying close attention to every detail to ensure it’s done right.",
     value2: "Build to Last",
     "value2.desc":
-      "We focus on quality that holds up over time. Using reliable materials and proven techniques, our work is made for real life and everyday use.",
+      "We deliver lasting quality using reliable materials and proven techniques built for everyday use.",
     value3: "Client First",
     "value3.desc":
-      "We listen first. Understanding our clients’ needs, style, and budget allows us to deliver tailored solutions that meet expectations and exceed satisfaction.",
+      "We create solutions that fit your needs and budget while delivering exceptional results.",
     "ceo.title": "Founder & CEO",
     "ceo.name": "Temesgen Abebe",
     "ceo.message":
@@ -124,7 +121,7 @@ const translations = {
     "service.title": "Professional Services",
     "service.subtitle":
       "We deliver exceptional quality and attention to detail in every project",
-    service1: "Vehicle Upholstery",
+    service1: "Automotive Upholstery",
     "service1.subtitle": "RESTORE & ENHANCE YOUR RIDE",
     "service1.desc":
       "Specializing in automotive interiors since 2013, we transform vehicle cabins with premium materials and expert craftsmanship—from classic restorations to modern customization.",
@@ -165,8 +162,8 @@ const translations = {
     "cta.book": "አገልግሎት ይዘዙ",
 
     // Hero
-    "hero.title1": "ፍጹምነትን",
-    "hero.title2": "እንፈጥራለን",
+    "hero.title1": "ተሜ",
+    "hero.title2": "አፖልስትሪ",
     "hero.subtitle":
       "ለየት ያሉ የመኪና የውስጥ ዲዛይኖች እና ዲኮሮች ። ከቅንጦት መኪናዎች እስከ ፈርኒቸር ስራዎች ፣ የእጅ ጥበብን እንደገና እንቀርፃለን።",
     "hero.cta1": "አገልግሎቶቻችን",
@@ -191,14 +188,12 @@ const translations = {
     "services.subtitle": "ምቾትን ከቅንጦት ጋር የሚያገናኙ መፍትሄዎች እንሰጣለን።",
     "services.automotive.title": "የመኪና ውስጥ ስራዎች",
     "services.automotive.desc": "ለቅንጦት መኪናዎች፣ SUVs እና ክላሲክ ተሽከርካሪዎች።",
-    "services.architectural.title": "ሲኒማ እና አዳራሽ",
-    "services.architectural.desc": "ለሲኒማዎች፣ ለስብሰባ አዳራሾች እና ለመዝናኛ ቦታዎች።",
-    "services.aviation.title": "አቪዬሽን",
-    "services.aviation.desc": "ለግል እና ለህዝብ አውሮፕላኖች ውስጠኛ ክፍል ፕሪሚየም ሽፋን።",
-    "services.marine.title": "የባህር ውሰጥ ስራዎች",
-    "services.marine.desc": "የአየር ሁኔታ-መቋቋም የሚችሉ ቅንጡ ጀልባዎች ።",
-    "services.comingSoon": "በቅርቡ",
-    "services.availableOnRequest": "በጥያቄ ይገኛል",
+    "services.commercial.title": "ሲኒማ እና አዳራሽ",
+    "services.commercial.desc": "ለሲኒማዎች፣ ለስብሰባ አዳራሾች እና ለመዝናኛ ቦታዎች።",
+    "services.restoration.title": "እድሳት",
+    "services.restoration.desc": "ንብረቶን በሚያማምሩ ቆዳዎችና ጨርቆች ይለውጡ።",
+    "services.btn": "ዝርዝሮችን ይመልከቱ",
+
     // Gallery
     "gallery.title1": "የእኛ",
     "gallery.title2": "ዲዛይኖች",
@@ -229,24 +224,22 @@ const translations = {
     "footer.tagline": "ፕሪሚየም የቆዳ ዲዛይን እና ሽፋን",
 
     //about page
-    "about.title": "ከፍተኛ ጥራት ያለው፣ ምቹ የሆነ የጽሕፈት መኪና እንፈጥራለን።",
+    "about.title": "ተሜ አፖልስትሪ",
     "about.content1":
-      "በ2012 የተመሰረተው ቴሜ አፕሆልስተሪ በተሽከርካሪ አልባሳት እና ለጥራት እደ ጥበብ ቁርጠኝነት ጀምሯል።",
+      "እ.ኤ.አ. በ2019 የተመሰረተው ቴሜ አፕሆልስተሪ እንደ መኪና ማጠቢያ ንግድ የጀመረ ሲሆን በኋላም ወደ ተሽከርካሪ መሸፈኛነት ተስፋፍቷል፣ ይህም ለጥራት እደ ጥበብ ባለው ጠንካራ ቁርጠኝነት ነው። ዛሬ ለመኪና እና ለተለያዩ የንግድ ቦታዎች የአፖልስትሪ አገልግሎት እንሰጣለን።",
     "about.content2":
-      "በአገር አቀፍ ደረጃ የሰለጠነ የእጅ ጥበብ ባለሙያዎችን በማጎልበት ሙያዊ የጨርቃጨርቅ ሥልጠና በመስጠት በኢትዮጵያ የመጀመሪያው በመሆናችን ኩራት ይሰማናል።",
+      "በኢትዮጵያ ሙያዊ የአፖልስትሪ ስልጠና በመስጠት፣ የሰለጠነ የእጅ ጥበብ ባለሙያዎችን በማገዝ እና በአገር አቀፍ ደረጃ የኢንዱስትሪውን እድገት በመደገፍ የመጀመሪያው በመሆናችን ኩራት ይሰማናል።",
     "value.title": "ዋና እሴቶች።",
     "value.subtitle": "እያንዳንዱን ስፌት እና ዲዛይን የሚመሩ መርሆዎች",
     value1: "Excellence",
-    "value1.desc":
-      "እያንዳንዱን ፕሮጀክት የራሳችን ይመስል እንይዛለን። ከትንሽ ስፌት ጀምሮ እስከ መጨረሻው ፍፃሜ ድረስ፣ በተለይ የተሽከርካሪ የውስጥ ክፍልን በተመለከተ ስራውን በትክክል— ለመስራት በጣም እንጨነቃለን።",
-    value2: "እስከ መጨረሻ ይገንቡ።",
+    "value1.desc": "እያንዳንዱን ፕሮጀክት ከትንሽ ስፌት ጀምሮ እስከ ፍፃሜው ድረስ ለራሳችን ይመስል እንይዛለን።",
+    value2: "ዘለቄታዊነት",
     "value2.desc":
-      "በጊዜ ሂደት በሚቆይ ጥራት ላይ እናተኩራለን. አስተማማኝ ቁሳቁሶችን እና የተረጋገጡ ቴክኒኮችን በመጠቀም ስራችን ለእውነተኛ ህይወት እና ለዕለት ተዕለት ጥቅም የተሰራ ነው.",
-    value3: "ደንበኛ መጀመሪያ።",
-    "value3.desc":
-      "መጀመሪያ እናዳምጣለን። ደንበኞቻችንን መረዳት የ’ ፍላጎቶች፣ ዘይቤ እና በጀት የሚጠበቁትን የሚያሟሉ እና ከእርካታ በላይ የሆኑ ብጁ መፍትሄዎችን እንድናቀርብ ያስችለናል።",
-    "ceo.title": "Founder & CEO",
-    "ceo.name": "Temesgen Abebe",
+      "ጥራት የስራዎቻችን ምስክር ነው። ዘመናዊ መሳሪያዎችን እና ቴክኒኮችን በመጠቀም ለዘለቄታዊ መፍትሄ እንተጋለን።",
+    value3: "ደንበኛ ንጉስ",
+    "value3.desc": "ሃሳቦን፣ ፍላጎቶን፣ በጀቶን ባማከለ ሁኔታ ከእርካታ በላይ የሆኑ መፍትሄዎችን እንሰጣለን።",
+    "ceo.title": "መስራች እና ባለቤት",
+    "ceo.name": "ተመስገን አበበ",
     "ceo.message":
       "“የምንፈጥረው እያንዳንዱ ቁራጭ ለዕደ ጥበብ ያለንን ፍቅር ይይዛል። የቤት እቃዎችን ብቻ አንለብስም — ምቾትን፣ ውበትን እና እምነትን እንመልሳለን ። ”",
     "ceo.info":

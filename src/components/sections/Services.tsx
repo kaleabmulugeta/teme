@@ -16,22 +16,24 @@ export default function Services() {
       titleKey: "services.automotive.title",
       descKey: "services.automotive.desc",
       image: "/photos/auto.webp",
+      btn: "services.btn",
       primary: true,
     },
     {
       id: "02",
-      titleKey: "services.architectural.title",
-      descKey: "services.architectural.desc",
+      titleKey: "services.commercial.title",
+      descKey: "services.commercial.desc",
       image: "/photos/cinema.webp",
+      btn: "services.btn",
       primary: true,
     },
     {
       id: "03",
-      titleKey: "services.aviation.title",
-      descKey: "services.aviation.desc",
+      titleKey: "services.restoration.title",
+      descKey: "services.restoration.desc",
       image: "/photos/jet.webp",
+      btn: "services.btn",
       primary: false,
-      comingSoon: true,
     },
   ];
 
@@ -54,14 +56,14 @@ export default function Services() {
         {/* Services Flat Layout (like template image) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {services.map((service) => (
-            <div key={service.id} className="flex flex-col">
+            <div key={service.id} className=" group flex flex-col">
               {/* Image — taller, no container */}
               <div className="relative w-full aspect-[4.75/5] rounded-xl overflow-hidden">
                 <Image
                   src={service.image}
                   alt={t(service.titleKey)}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                   priority={service.primary}
                 />
               </div>
@@ -87,7 +89,8 @@ export default function Services() {
                 <button
                   className={`mt-3 px-4 py-2 text-sm font-medium ${isDark ? "bg-white text-black hover:bg-neutral-200" : "bg-black text-white hover:bg-neutral-800"} font-semibold rounded-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl mt-8`}
                 >
-                  View Details
+                  {" "}
+                  <a href="/services"> {t(service.btn)}</a>
                 </button>
               </div>
             </div>

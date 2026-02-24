@@ -10,6 +10,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -52,8 +53,8 @@ export default function Header() {
     { key: "nav.home", href: "/home" },
     { key: "nav.story", href: "/about" },
     { key: "nav.services", href: "/services" },
-    { key: "nav.gallery", href: "/#gallery" },
-    { key: "nav.contact", href: "/#contact" },
+    { key: "nav.gallery", href: "/gallery" },
+    { key: "nav.contact", href: "/contact" },
   ];
 
   const handleBookClick = () => {
@@ -61,7 +62,7 @@ export default function Header() {
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
     } else {
-      window.location.href = "/#contact";
+      window.location.href = "/contact";
     }
     setMobileMenuOpen(false);
   };
@@ -82,12 +83,13 @@ export default function Header() {
           href="/"
           className={`text-2xl font-bold tracking-tighter ${isDark ? "text-white" : "text-black"}`}
         >
-          <span className="block leading-none">TEME</span>
-          <span
-            className={`block leading-none ${isDark ? "text-neutral-300" : "text-neutral-500"}`}
-          >
-            UPHOLSTERY
-          </span>
+          <Image
+            src="/photos/logo.webp"
+            alt="Teme Logo"
+            width={60}
+            height={40}
+            className="object-contain"
+          />
         </Link>
 
         {/* Desktop Navigation */}

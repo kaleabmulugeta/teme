@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Button from "@/components/ui/Button";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -89,9 +90,9 @@ export default function Hero() {
         lang={language}
       >
         <h1
-          className={`hero-text text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter ${isDark ? "text-white drop-shadow-[0_6px_20px_rgba(0,0,0,0.85)]" : "text-black"}`}
+          className={`hero-text text-5xl items-center md:text-7xl lg:text-8xl font-bold tracking-tighter ${isDark ? "text-white drop-shadow-[0_6px_20px_rgba(0,0,0,0.85)]" : "text-black"}`}
         >
-          {t("hero.title1")} <br />
+          {t("hero.title1")}{" "}
           <span className={isDark ? "text-white" : "text-neutral-600"}>
             {t("hero.title2")}
           </span>
@@ -102,26 +103,12 @@ export default function Hero() {
           {t("hero.subtitle")}
         </p>
         <div className="hero-btn flex flex-col sm:flex-row gap-4 mt-4">
-          <Button
-            variant="primary"
-            onClick={() =>
-              document
-                .getElementById("services")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-          >
-            {t("hero.cta1")}
-          </Button>
-          <Button
-            variant="secondary"
-            onClick={() =>
-              document
-                .getElementById("story")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-          >
-            {t("hero.cta2")}
-          </Button>
+          <Link href="/services">
+            <Button variant="primary">{t("hero.cta1")}</Button>
+          </Link>
+          <Link href="/about">
+            <Button variant="secondary">{t("hero.cta2")}</Button>
+          </Link>
         </div>
       </div>
 
