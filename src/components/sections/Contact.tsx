@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, useEffect, useMemo, FormEvent } from "react";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 import { useLanguage } from "@/context/LanguageContext";
@@ -8,29 +8,60 @@ import { useTheme } from "@/context/ThemeContext";
 import { MessageCircle } from "lucide-react";
 
 // Administrator WhatsApp number - replace with actual number
-const WHATSAPP_NUMBER = "251975136484";
+const WHATSAPP_NUMBER = "251930555553";
 
-export default function Contact() {
+type ContactMode = "services" | "training";
+
+interface ContactProps {
+    mode?: ContactMode;
+}
+
+export default function Contact({ mode = "services" }: ContactProps) {
     const { t, language } = useLanguage();
     const { isDark } = useTheme();
+    const interestOptions = useMemo(() => mode === "training"
+        ? [
+            { value: "pro", label: t("training.course.pro") },
+            { value: "basic", label: t("training.course.basic") },
+            { value: "intermediate", label: t("training.course.intermediate") },
+            { value: "zero2hero", label: t("training.course.zero2hero") },
+        ]
+        : [
+            { value: "seats", label: t("contact.interest.seats") },
+            { value: "dashboard", label: t("contact.interest.dashboard") },
+            { value: "roofline", label: t("contact.interest.roofline") },
+            { value: "doors", label: t("contact.interest.doors") },
+            { value: "steering", label: t("contact.interest.steering") },
+            { value: "fullInterior", label: t("contact.interest.fullInterior") },
+            { value: "architectural", label: t("contact.interest.architectural") },
+        ], [mode, t]);
+
     const [formData, setFormData] = useState({
         name: "",
         phone: "",
         email: "",
-        interest: "automotive",
+        interest: interestOptions[0].value,
         message: "",
     });
+
+    useEffect(() => {
+        const handleSelectInterest = (e: Event) => {
+            const value = (e as CustomEvent).detail;
+            if (interestOptions.some((opt) => opt.value === value)) {
+                setFormData((prev) => ({ ...prev, interest: value }));
+            }
+        };
+        window.addEventListener("select-interest", handleSelectInterest);
+        return () => window.removeEventListener("select-interest", handleSelectInterest);
+    }, [interestOptions]);
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
 
         // Format the message for WhatsApp
-        const interestLabels: Record<string, string> = {
-            automotive: t("contact.interest.automotive"),
-            architectural: t("contact.interest.architectural"),
-            aviation: t("contact.interest.aviation"),
-            marine: t("contact.interest.marine"),
-        };
+        const interestLabels: Record<string, string> = Object.fromEntries(
+            interestOptions.map((option) => [option.value, option.label])
+        );
 
         const message = `
 *New Inquiry from TEME Website*
@@ -119,10 +150,11 @@ ${formData.message}
                             onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
                             className={`w-full border rounded-lg px-4 py-3 focus:outline-none transition-colors ${isDark ? "bg-neutral-900 border-white/10 text-white focus:border-white/30" : "bg-neutral-100 border-black/10 text-black focus:border-black/30"}`}
                         >
-                            <option value="automotive">{t("contact.interest.automotive")}</option>
-                            <option value="architectural">{t("contact.interest.architectural")}</option>
-                            <option value="aviation">{t("contact.interest.aviation")}</option>
-                            <option value="marine">{t("contact.interest.marine")}</option>
+                            {interestOptions.map((option) => (
+                                <option key={option.value} value={option.value}>
+                                    {option.label}
+                                </option>
+                            ))}
                         </select>
                     </div>
 

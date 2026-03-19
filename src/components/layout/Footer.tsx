@@ -35,9 +35,6 @@ export default function Footer() {
                             {language === "en" ? "Quick Links" : "ፈጣን ማገናኛዎች"}
                         </h4>
                         <nav className="flex flex-col space-y-2">
-                            <Link href="/#story" className={`text-sm transition-colors ${isDark ? "text-neutral-400 hover:text-white" : "text-neutral-600 hover:text-black"}`}>
-                                {t("nav.story")}
-                            </Link>
                             <Link href="/#services" className={`text-sm transition-colors ${isDark ? "text-neutral-400 hover:text-white" : "text-neutral-600 hover:text-black"}`}>
                                 {t("nav.services")}
                             </Link>
@@ -46,6 +43,9 @@ export default function Footer() {
                             </Link>
                             <Link href="/#contact" className={`text-sm transition-colors ${isDark ? "text-neutral-400 hover:text-white" : "text-neutral-600 hover:text-black"}`}>
                                 {t("nav.contact")}
+                            </Link>
+                            <Link href="/training" className={`text-sm transition-colors ${isDark ? "text-neutral-400 hover:text-white" : "text-neutral-600 hover:text-black"}`}>
+                                {t("nav.training")}
                             </Link>
                         </nav>
                     </div>
@@ -56,11 +56,12 @@ export default function Footer() {
                             {language === "en" ? "Connect With Us" : "ያግኙን"}
                         </h4>
                         <div className="flex gap-3">
-                            <SocialIcon platform="whatsapp" href="https://wa.me/251911210000" />
+                            <SocialIcon platform="phone" href="tel:+251903511111" />
+                            <SocialIcon platform="whatsapp" href="https://wa.me/251930555553" />
+                            <SocialIcon platform="youtube" href="https://www.youtube.com/@temeupholstry" />
                             <SocialIcon platform="tiktok" href="https://tiktok.com/@temesgenzeyede" />
                             <SocialIcon platform="telegram" href="https://t.me/temeupholstery" />
                             <SocialIcon platform="instagram" href="https://instagram.com/temeupholstery" />
-                            <SocialIcon platform="linkedin" href="https://linkedin.com/company/temeupholstery" />
                         </div>
                         <p className="text-sm text-neutral-500 mt-6">
                             Addis Ababa, Ethiopia

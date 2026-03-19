@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 import { useLanguage } from "@/context/LanguageContext";
@@ -10,155 +11,91 @@ import { ChevronLeft, ChevronRight, Eye, MessageCircle, X } from "lucide-react";
 
 // Administrator WhatsApp number - replace with actual number if needed
 const WHATSAPP_NUMBER = "251975136484";
+const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:4000";
 
-// Ethiopic-inspired design names with mock project data
-const designs = [
+type GalleryImage = {
+    id: string;
+    imageUrl: string;
+};
+
+type GalleryProject = {
+    id: string;
+    titleEn: string;
+    titleAm: string;
+    thumbnailUrl: string;
+    images: GalleryImage[];
+};
+
+const staticPreviewProjects: GalleryProject[] = [
     {
-        id: 1,
-        name: "Konjit",
-        nameAm: "ቆንጂት",
-        category: "automotive",
-        categoryAm: "መኪና",
-        image: "/photos/konjit.webp",
-        images: ["/photos/konjit.webp", "/photos/konjit-2.webp", "/photos/konjit-3.webp", "/photos/konjit-4.webp","/photos/konjit-5.webp","/photos/konjit-6.webp", "/photos/konjit-7.webp"],
+        id: "static-konjit",
+        titleEn: "Konjit",
+        titleAm: "ቆንጂት",
+        thumbnailUrl: "/photos/konjit.webp",
+        images: [{ id: "static-konjit-1", imageUrl: "/photos/konjit.webp" }],
     },
     {
-        id: 2,
-        name: "Anbesaw",
-        nameAm: "አንበሳው",
-        category: "automotive",
-        categoryAm: "መኪና",
-        image: "/photos/anbesaw.webp",
-        images: ["/photos/anbesaw.webp", "/photos/anbesaw-2.webp", "/photos/anbesaw-3.webp", "/photos/anbesaw-4.webp","/photos/anbesaw-5.webp","/photos/anbesaw-6.webp", "/photos/anbesaw-7.webp"],
+        id: "static-anbesaw",
+        titleEn: "Anbesaw",
+        titleAm: "አንበሳው",
+        thumbnailUrl: "/photos/anbesaw.webp",
+        images: [{ id: "static-anbesaw-1", imageUrl: "/photos/anbesaw.webp" }],
     },
     {
-        id: 3,
-        name: "Alula",
-        nameAm: "አሉላ",
-        category: "automotive",
-        categoryAm: "መኪና",
-        image: "/photos/alula.webp",
-        images: ["/photos/alula.webp"],
+        id: "static-semay",
+        titleEn: "Semay",
+        titleAm: "ሰማይ",
+        thumbnailUrl: "/photos/semay.webp",
+        images: [{ id: "static-semay-1", imageUrl: "/photos/semay.webp" }],
     },
     {
-        id: 4,
-        name: "Maru",
-        nameAm: "ማሩ",
-        category: "automotive",
-        categoryAm: "መኪና",
-        image: "/photos/maru.webp",
-        images: ["/photos/maru.webp"],
-    },
-    {
-        id: 5,
-        name: "Genanaw",
-        nameAm: "ገናናው",
-        category: "automotive",
-        categoryAm: "መኪና",
-        image: "/photos/genanaw.webp",
-        images: ["/photos/genanaw.webp"],
-    },
-    {
-        id: 6,
-        name: "Dinku",
-        nameAm: "ዲንቁ",
-        category: "automotive",
-        categoryAm: "መኪና",
-        image: "/photos/dinku.webp",
-        images: ["/photos/dinku.webp", "/photos/dinku-1.webp", "/photos/dinku-2.webp", "/photos/dinku-3.webp","/photos/dinku-4.webp","/photos/dinku-5.webp"],
-    },
-    {
-        id: 7,
-        name: "Wendwesen",
-        nameAm: "ወንድወሰን",
-        category: "automotive",
-        categoryAm: "መኪና",
-        image: "/photos/wendwesen.webp",
-        images: ["/photos/wendwesen.webp"],
-    },
-    {
-        id: 8,
-        name: "Moges",
-        nameAm: "ሞገስ",
-        category: "automotive",
-        categoryAm: "መኪና",
-        image: "/photos/moges.webp",
-        images: ["/photos/moges.webp"],
-    },
-    {
-        id: 9,
-        name: "Birhan",
-        nameAm: "ብርሃን",
-        category: "automotive",
-        categoryAm: "መኪና",
-        image: "/photos/birhan.webp",
-        images: ["/photos/birhan.webp"],
-    },
-    {
-        id: 10,
-        name: "Tikur Sew",
-        nameAm: "ጥቁር ሰው",
-        category: "automotive",
-        categoryAm: "መኪና",
-        image: "/photos/berihun.webp",
-        images: ["/photos/berihun.webp"],
-    },
-    {
-        id: 12,
-        name: "Degsew",
-        nameAm: "ደግሰው",
-        category: "automotive",
-        categoryAm: "መኪና",
-        image: "/photos/degsew.webp",
-        images: ["/photos/degsew.webp"],
-    },
-    {
-        id: 13,
-        name: "Menelik",
-        nameAm: "ምኒልክ",
-        category: "automotive",
-        categoryAm: "መኪና",
-        image: "/photos/menelik.webp",
-        images: ["/photos/menelik.webp"],
-    },
-    {
-        id: 14,
-        name: "Nitsuh",
-        nameAm: "ንጹህ",
-        category: "automotive",
-        categoryAm: "መኪና",
-        image: "/photos/clean.webp",
-        images: ["/photos/clean.webp"],
-    },
-    {
-        id: 15,
-        name: "Kuru",
-        nameAm: "ኩሩ",
-        category: "automotive",
-        categoryAm: "መኪና",
-        image: "/photos/kuru.webp",
-        images: ["/photos/kuru.webp", "/photos/kuru-1.webp", "/photos/kuru-2.webp", "/photos/kuru-3.webp","/photos/kuru-4.webp","/photos/kuru-5.webp"],
-    },
-    {
-        id: 16,
-        name: "Semay",
-        nameAm: "ሰማይ",
-        category: "automotive",
-        categoryAm: "መኪና",
-        image: "/photos/semay.webp",
-        images: ["/photos/semay.webp", "/photos/semay-2.webp", "/photos/semay-3.webp", "/photos/semay-4.webp","/photos/semay-5.webp","/photos/semay-6.webp", "/photos/semay-7.webp", "/photos/semay-8.webp" ],
+        id: "static-kuru",
+        titleEn: "Kuru",
+        titleAm: "ኩሩ",
+        thumbnailUrl: "/photos/kuru.webp",
+        images: [{ id: "static-kuru-1", imageUrl: "/photos/kuru.webp" }],
     },
 ];
 
 export default function Gallery() {
     const { t, language } = useLanguage();
     const { isDark } = useTheme();
-    const [selectedDesign, setSelectedDesign] = useState<(typeof designs)[number] | null>(null);
+    const [projects, setProjects] = useState<GalleryProject[]>([]);
+    const [selectedDesign, setSelectedDesign] = useState<GalleryProject | null>(null);
     const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-    useEffect(() => {
+    const openDesign = (design: GalleryProject) => {
+        setSelectedDesign(design);
         setActiveImageIndex(0);
-    }, [selectedDesign]);
+    };
+
+    useEffect(() => {
+        const controller = new AbortController();
+
+        const loadProjects = async () => {
+            try {
+                const response = await fetch(`${backendUrl}/api/gallery/projects`, {
+                    cache: "no-store",
+                    signal: controller.signal,
+                });
+
+                if (!response.ok) {
+                    return;
+                }
+
+                const payload = await response.json();
+                setProjects(payload.projects ?? []);
+            } catch (err) {
+                if (err instanceof DOMException && err.name === "AbortError") {
+                    return;
+                }
+            }
+        };
+
+        void loadProjects();
+
+        return () => controller.abort();
+    }, []);
 
     useEffect(() => {
         if (!selectedDesign) return;
@@ -190,7 +127,12 @@ export default function Gallery() {
         window.open(buildInquiryLink(designName), "_blank", "noopener,noreferrer");
     };
 
-    const getDesignImages = (design: (typeof designs)[number]) => design.images ?? [design.image];
+    const displayedProjects = [...staticPreviewProjects, ...projects];
+
+    const getDesignImages = (design: GalleryProject) => {
+        const images = design.images.map((image) => image.imageUrl).filter(Boolean);
+        return images.length > 0 ? images : [design.thumbnailUrl];
+    };
 
     const handlePrevImage = () => {
         if (!selectedDesign) return;
@@ -219,66 +161,71 @@ export default function Gallery() {
                     <p className={`${isDark ? "text-neutral-400" : "text-neutral-600"} opacity-80`}>{t("gallery.subtitle")}</p>
                 </div>
 
-                {/* Design Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                    {designs.map((design, idx) => (
-                        <motion.div
-                            key={design.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: idx * 0.05 }}
-                            className={`group relative aspect-[4/5] rounded-xl overflow-hidden border cursor-pointer transition-all duration-300 ${isDark ? "bg-neutral-900/70 border-white/5 hover:border-white/20" : "bg-neutral-100/70 border-black/5 hover:border-black/20"}`}
-                            role="button"
-                            tabIndex={0}
-                            aria-label={language === "am" ? `${design.nameAm} ዲዛይን ይመልከቱ` : `View ${design.name} design`}
-                            onClick={() => setSelectedDesign(design)}
-                            onKeyDown={(event) => {
-                                if (event.key === "Enter" || event.key === " ") {
-                                    event.preventDefault();
-                                    setSelectedDesign(design);
-                                }
-                            }}
-                        >
-                            {/* Background Image */}
-                            <div
-                                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                                style={{ backgroundImage: `url(${design.image})` }}
-                            />
+                {displayedProjects.length === 0 ? (
+                    <p className={`text-center py-20 ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>
+                        {language === "am" ? "እስካሁን ምንም ፕሮጀክት አልተጨመረም።" : "No gallery projects have been uploaded yet."}
+                    </p>
+                ) : (
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                        {displayedProjects.map((design, idx) => (
+                            <motion.div
+                                key={design.id}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: idx * 0.05 }}
+                                className={`group relative aspect-[4/5] rounded-xl overflow-hidden border cursor-pointer transition-all duration-300 ${isDark ? "bg-neutral-900/70 border-white/5 hover:border-white/20" : "bg-neutral-100/70 border-black/5 hover:border-black/20"}`}
+                                role="button"
+                                tabIndex={0}
+                                aria-label={language === "am" ? `${design.titleAm} ዲዛይን ይመልከቱ` : `View ${design.titleEn} design`}
+                                onClick={() => openDesign(design)}
+                                onKeyDown={(event) => {
+                                    if (event.key === "Enter" || event.key === " ") {
+                                        event.preventDefault();
+                                        openDesign(design);
+                                    }
+                                }}
+                            >
+                                {/* Background Image */}
+                                <div
+                                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                                    style={{ backgroundImage: `url(${design.thumbnailUrl})` }}
+                                />
 
-                            {/* Gradient Overlay */}
-                            {isDark && (
-                                <div className="absolute inset-0 opacity-60 group-hover:opacity-80 transition-opacity duration-300 bg-gradient-to-t from-black via-black/20 to-transparent" />
-                            )}
+                                {/* Gradient Overlay */}
+                                {isDark && (
+                                    <div className="absolute inset-0 opacity-60 group-hover:opacity-80 transition-opacity duration-300 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                                )}
 
-                            {/* Content */}
-                            <div className="absolute inset-0 p-4 flex flex-col justify-between z-10">
-                                {/* Category Badge */}
-                                <div className="flex justify-end">
-                                    <span className={`text-[10px] font-medium uppercase tracking-wider px-2 py-1 rounded-full border ${isDark ? "text-neutral-400 bg-black/40 border-white/10" : "text-neutral-600 bg-white border-black/10"}`}>
-                                        {language === "am" ? design.categoryAm : design.category}
-                                    </span>
-                                </div>
+                                {/* Content */}
+                                <div className="absolute inset-0 p-4 flex flex-col justify-between z-10">
+                                    {/* Category Badge */}
+                                    <div className="flex justify-end">
+                                        <span className={`text-[10px] font-medium uppercase tracking-wider px-2 py-1 rounded-full border ${isDark ? "text-neutral-400 bg-black/40 border-white/10" : "text-neutral-600 bg-white border-black/10"}`}>
+                                            {language === "am" ? "መኪና" : "automotive"}
+                                        </span>
+                                    </div>
 
-                                {/* Title & CTA */}
-                                <div className="space-y-2">
-                                    <h3 className="text-xl font-bold text-white">
-                                        {language === "am" ? design.nameAm : design.name}
-                                    </h3>
-                                    <div className="flex items-center gap-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                                        <Eye className={`w-4 h-4 ${isDark ? "text-neutral-400" : "text-neutral-600"}`} />
-                                        <span className={`text-xs ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>{t("gallery.viewProject")}</span>
+                                    {/* Title & CTA */}
+                                    <div className="space-y-2">
+                                        <h3 className="text-xl font-bold text-white">
+                                            {language === "am" ? design.titleAm : design.titleEn}
+                                        </h3>
+                                        <div className="flex items-center gap-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                                            <Eye className={`w-4 h-4 ${isDark ? "text-neutral-400" : "text-neutral-600"}`} />
+                                            <span className={`text-xs ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>{t("gallery.viewProject")}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* Hover Glow Effect */}
-                            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                                <div className="absolute inset-0 bg-gradient-to-t from-cognac/20 to-transparent" />
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
+                                {/* Hover Glow Effect */}
+                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                                    <div className="absolute inset-0 bg-gradient-to-t from-cognac/20 to-transparent" />
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                )}
 
                 <AnimatePresence>
                     {selectedDesign && (
@@ -314,7 +261,7 @@ export default function Gallery() {
                                             {language === "am" ? "የዲዛይን ቅድሚያ" : "Design Preview"}
                                         </p>
                                         <h3 className={`text-2xl font-semibold ${isDark ? "text-white" : "text-black"}`}>
-                                            {language === "am" ? selectedDesign.nameAm : selectedDesign.name}
+                                            {language === "am" ? selectedDesign.titleAm : selectedDesign.titleEn}
                                         </h3>
                                     </div>
                                     <button
@@ -329,29 +276,29 @@ export default function Gallery() {
                                 <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-6 p-6">
                                     <div className="space-y-4">
                                         <div className="relative overflow-hidden rounded-xl border border-black/10 bg-black/5 w-[600px] h-[380px] max-w-full">
-                                            <img
+                                            <Image
                                                 src={getDesignImages(selectedDesign)[activeImageIndex]}
-                                                alt={language === "am" ? selectedDesign.nameAm : selectedDesign.name}
+                                                alt={language === "am" ? selectedDesign.titleAm : selectedDesign.titleEn}
+                                                fill
+                                                sizes="(max-width: 1024px) 100vw, 600px"
                                                 className="w-full h-full object-cover"
                                             />
                                             <button
                                                 onClick={handlePrevImage}
-                                                className={`absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full backdrop-blur ${
-                                                    isDark
-                                                        ? "bg-black/50 text-white hover:bg-black/70"
-                                                        : "bg-white/70 text-black hover:bg-white"
-                                                }`}
+                                                className={`absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full backdrop-blur ${isDark
+                                                    ? "bg-black/50 text-white hover:bg-black/70"
+                                                    : "bg-white/70 text-black hover:bg-white"
+                                                    }`}
                                                 aria-label={language === "am" ? "ቀደም ያለ ምስል" : "Previous image"}
                                             >
                                                 <ChevronLeft className="w-5 h-5" />
                                             </button>
                                             <button
                                                 onClick={handleNextImage}
-                                                className={`absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full backdrop-blur ${
-                                                    isDark
-                                                        ? "bg-black/50 text-white hover:bg-black/70"
-                                                        : "bg-white/70 text-black hover:bg-white"
-                                                }`}
+                                                className={`absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full backdrop-blur ${isDark
+                                                    ? "bg-black/50 text-white hover:bg-black/70"
+                                                    : "bg-white/70 text-black hover:bg-white"
+                                                    }`}
                                                 aria-label={language === "am" ? "ቀጣይ ምስል" : "Next image"}
                                             >
                                                 <ChevronRight className="w-5 h-5" />
@@ -361,18 +308,23 @@ export default function Gallery() {
                                             {getDesignImages(selectedDesign).map((image, index) => (
                                                 <div
                                                     key={`${selectedDesign.id}-${image}`}
-                                                    className={`relative overflow-hidden rounded-lg border shrink-0 w-28 h-16 ${
-                                                        activeImageIndex === index
-                                                            ? isDark
-                                                                ? "border-white/50"
-                                                                : "border-black/60"
-                                                            : isDark
-                                                                ? "border-white/10"
-                                                                : "border-black/10"
-                                                    }`}
+                                                    className={`relative overflow-hidden rounded-lg border shrink-0 w-28 h-16 ${activeImageIndex === index
+                                                        ? isDark
+                                                            ? "border-white/50"
+                                                            : "border-black/60"
+                                                        : isDark
+                                                            ? "border-white/10"
+                                                            : "border-black/10"
+                                                        }`}
                                                     aria-label={language === "am" ? `ተጨማሪ ምስል ${index + 1}` : `Additional image ${index + 1}`}
                                                 >
-                                                    <img src={image} alt="" className="w-full h-full object-cover" />
+                                                    <Image
+                                                        src={image}
+                                                        alt=""
+                                                        fill
+                                                        sizes="112px"
+                                                        className="w-full h-full object-cover"
+                                                    />
                                                 </div>
                                             ))}
                                         </div>
@@ -384,7 +336,7 @@ export default function Gallery() {
                                                 {language === "am" ? "ምድብ" : "Category"}
                                             </p>
                                             <p className={`text-lg font-semibold ${isDark ? "text-white" : "text-black"}`}>
-                                                {language === "am" ? selectedDesign.categoryAm : selectedDesign.category}
+                                                {language === "am" ? "መኪና" : "automotive"}
                                             </p>
                                         </div>
                                         <div>
@@ -392,7 +344,7 @@ export default function Gallery() {
                                                 {language === "am" ? "ማብራሪያ" : "Overview"}
                                             </p>
                                             <p className={`${isDark ? "text-neutral-300" : "text-neutral-600"}`}>
-                                                {getDesignDescription(language === "am" ? selectedDesign.nameAm : selectedDesign.name)}
+                                                {getDesignDescription(language === "am" ? selectedDesign.titleAm : selectedDesign.titleEn)}
                                             </p>
                                         </div>
                                         <div>
@@ -408,7 +360,7 @@ export default function Gallery() {
                                         <Button
                                             variant="primary"
                                             className={`gap-2 ${language === "en" ? "text-xs" : "text-sm"}`}
-                                            onClick={() => handleInquiryClick(language === "am" ? selectedDesign.nameAm : selectedDesign.name)}
+                                            onClick={() => handleInquiryClick(language === "am" ? selectedDesign.titleAm : selectedDesign.titleEn)}
                                         >
                                             <MessageCircle className={language === "en" ? "w-4 h-4" : "w-[18px] h-[18px]"} />
                                             {language === "am" ? "ስለዚህ ዲዛይን ይጠይቁ" : "Contact us about this design"}

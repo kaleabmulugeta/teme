@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
@@ -52,6 +53,7 @@ export default function Header() {
         { key: "nav.story", href: "/#story" },
         { key: "nav.services", href: "/#services" },
         { key: "nav.gallery", href: "/#gallery" },
+        { key: "nav.training", href: "/training" },
         { key: "nav.contact", href: "/#contact" },
     ];
 
@@ -75,10 +77,24 @@ export default function Header() {
             )}
         >
             <div className="flex items-center justify-between max-w-7xl mx-auto">
-                <Link href="/" className={`text-2xl font-bold tracking-tighter ${isDark ? "text-white" : "text-black"}`}>
-                    <span className="block leading-none">TEME</span>
-                    <span className={`block leading-none ${isDark ? "text-neutral-300" : "text-neutral-500"}`}>
-                        UPHOLSTERY
+                <Link href="/" className={`inline-flex items-center gap-2 md:gap-10 text-xl md:text-2xl font-bold tracking-tighter ${isDark ? "text-white" : "text-black"}`}>
+                    <span className="inline-flex h-10 md:h-16 w-auto shrink-0 items-center" aria-hidden="true">
+                        <Image
+                            src="/photos/logo.webp"
+                            alt=""
+                            width={2702}
+                            height={2702}
+                            sizes="(max-width: 768px) 84px, 150px"
+                            quality={100}
+                            className="h-full w-auto origin-left scale-[1.25] md:scale-[2] object-contain"
+                            priority
+                        />
+                    </span>
+                    <span>
+                        <span className="block leading-none">TEME</span>
+                        <span className={`block leading-none ${isDark ? "text-neutral-300" : "text-neutral-500"}`}>
+                            UPHOLSTERY
+                        </span>
                     </span>
                 </Link>
 

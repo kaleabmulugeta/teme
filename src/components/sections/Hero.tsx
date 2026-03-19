@@ -67,7 +67,7 @@ export default function Hero() {
     return (
         <section
             ref={containerRef}
-            className={`relative min-h-screen w-full overflow-hidden flex items-center justify-center pt-12 md:pt-14 ${isDark ? "bg-black" : "bg-white"}`}
+            className={`relative min-h-screen w-full overflow-hidden flex items-center justify-center pt-12 md:pt-14 pb-16 ${isDark ? "bg-black" : "bg-white"}`}
         >
             {/* Background */}
             <div
