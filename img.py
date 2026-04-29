@@ -1,6 +1,8 @@
 import os
 from PIL import Image
 
+# Testing gl
+
 
 def convert_images_to_webp(source_dir):
     for root, _, files in os.walk(source_dir):
